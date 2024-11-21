@@ -82,3 +82,7 @@ jobs:
             ]
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          mkdir docs
+          echo $GITHUB_RUN_NUMBER >docs/data.json
+          ls -R
