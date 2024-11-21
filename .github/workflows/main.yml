@@ -82,7 +82,12 @@ jobs:
             ]
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: |
-          mkdir docs
-          echo $GITHUB_RUN_NUMBER >docs/data.json
+      - env:
+          DIR: public
+        run: |
+          mkdir ${DIR}
+          echo $GITHUB_RUN_NUMBER >${DIR}/data.json
           ls -R
+      - uses: peaceiris/actions-gh-pages@v4.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
