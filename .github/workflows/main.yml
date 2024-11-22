@@ -90,7 +90,7 @@ jobs:
           echo $GITHUB_RUN_NUMBER >${DIR}/data.json
           ls -R
       - uses: peaceiris/actions-gh-pages@v4.0.0
-#        if: fromJSON(steps.sem-rel.outputs.new-release-published)
+        if: fromJSON(steps.sem-rel.outputs.new-release-published)
         with:
-          destination_dir: ${{ github.run_number }}
+          destination_dir: ${{ steps.sem-rel.outputs.git-tag }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
